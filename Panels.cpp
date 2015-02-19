@@ -39,9 +39,11 @@ void __fastcall Hooked_PaintTraverse( PVOID pPanels, int edx, unsigned int vguiP
 			//Test ESP code.
 
 			// loop every entity
+
+			// crashes beyond this point
 			for (int iIndex = 0; iIndex < gInts.EntList->GetHighestEntityIndex(); iIndex++)
 			{
-				gEsp.DrawPlayerESP(iIndex);
+				gEsp.DrawPlayerESP(iIndex); // crash in this func
 			}
 		}
 	}

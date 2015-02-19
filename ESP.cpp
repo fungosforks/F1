@@ -6,14 +6,14 @@ void CEsp::DrawPlayerESP(int iIndex)
 	//================================================================
 	CPlayer __pLocalBaseEntity = gPlayers[me];
 
-	CBaseEntity* pLocalBaseEntity = __pLocalBaseEntity();
+	CBaseEntity* pLocalBaseEntity = __pLocalBaseEntity(); // no crash here, gets loal ent, always avalible
 
 	if (iIndex == pLocalBaseEntity->index)
 		return;
 	//================================================================
 	CPlayer __pBaseEntity = gPlayers[iIndex];
 
-	CBaseEntity* pBaseEntity = __pBaseEntity();
+	CBaseEntity* pBaseEntity = __pBaseEntity(); // crash here??
 
 	if (pBaseEntity == NULL)
 		return;
