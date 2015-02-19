@@ -1,6 +1,3 @@
-public\
-
-
 # Compiled Object files
 *.slo
 *.lo
@@ -29,3 +26,7 @@ public\
 *.exe
 *.out
 *.app
+
+#msvc shit
+*.sdf
+*.opensdf

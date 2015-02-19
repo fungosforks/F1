@@ -1,6 +1,7 @@
 #pragma once
 
-
+#include <Windows.h>
+#include "getvfunc.h"
 // Seperate header for all things related to cvars
 // SDK.h == far to messy
 
@@ -201,7 +202,7 @@ class ICvar
 public:
 	void ConsolePrintf(const char *pszMessage, ...)
 	{
-		gBaseAPI.LogToConsole("ConsolePrintf: %s", pszMessage);
+		//gBaseAPI.LogToConsole("ConsolePrintf: %s", pszMessage);
 
 		typedef void(__stdcall* OriginalFn)(const char*, ...);
 		getvfunc<OriginalFn>(this, 24)(pszMessage);

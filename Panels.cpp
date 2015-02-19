@@ -72,14 +72,14 @@ void Intro( void )
 		// create debug console
 		gBaseAPI.BuildDebugConsole();
 
-		ConVar *cheats = gInts.Cvar->FindVar("sv_cheats");
+		ConVarRef cheats("sv_cheats");
 
-		gBaseAPI.LogToConsole("sv_cheats convar @%X", cheats);
+		gBaseAPI.LogToConsole("sv_cheats convar @%X", cheats.GetLinkedConVar);
 
-		gBaseAPI.LogToConsole("Dumping netvar offsets!!");
+		//gBaseAPI.LogToConsole("Dumping netvar offsets!!");
 
-		// dump offsets to netvars.log
-		gNetworkedVar.dump();
+		//// dump offsets to netvars.log
+		//gNetworkedVar.dump();
 
 		// populate offsets
 		gPlayerVars.findOffset();
