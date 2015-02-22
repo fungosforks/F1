@@ -66,9 +66,6 @@
     <ClInclude Include="ESP.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="CVAR.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Glow.h">
       <Filter>Headers</Filter>
     </ClInclude>

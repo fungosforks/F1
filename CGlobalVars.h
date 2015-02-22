@@ -52,6 +52,8 @@ public:
 	int m_iAmmoMetal;
 	int m_fFlags;
 	bool m_bGlowEnabled;
+	int m_hActiveWeapon;
+	int m_bReadyToBackstab;
 };
 
 class COffsets

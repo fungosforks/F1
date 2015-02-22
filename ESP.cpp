@@ -2,18 +2,26 @@
 
 void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 {
-
-	gBaseAPI.LogToConsole ( "Trying ESP on Entity:%i", player.handle().GetEntryIndex ( ) );
-
 	player_info_t pInfo;
 
 	if ( player == localPlayer )
 		return;
 
+	if ( player.isEntityNull ( ) )
+		return;
+
 	try
 	{
+
+		bool isDormant = player.getEnt ( )->IsDormant ( );
+		bool isPlayer = player.getEnt ( )->IsPlayer ( );
+		bool getPlayerInfo = gInts.Engine->GetPlayerInfo ( player.index ( ), &pInfo );
+		bool playerState = player.GetLifeState ( ) == LIFE_ALIVE;
+
+
+
 		// is it a player??
-		if ( player.GetLifeState ( ) == LIFE_ALIVE && !player.getEnt ( )->IsDormant ( ) && gInts.Engine->GetPlayerInfo ( player.handle ( ).GetEntryIndex ( ), &pInfo ) && player.getEnt ( )->IsPlayer ( ) )
+		if ( isPlayer && getPlayerInfo && !isDormant && playerState )
 		{
 			Vector vScreen, vWorldPos;
 
@@ -34,7 +42,7 @@ void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 			gDrawManager.DrawPlayerBox ( player.getEnt ( ), dwGetTeamColor );
 
 			// draw name & class under it
-			gDrawManager.DrawString ( vScreen.x, vScreen.y, dwGetTeamColor, "%s | %s", pInfo.name, player.GetClass ( ) );
+			gDrawManager.DrawString ( vScreen.x, vScreen.y, dwGetTeamColor, "%s | %s", pInfo.name, gPlayerHelper.szGetTF2Class ( player.GetClass ( ) ) );
 			vScreen.y += gDrawManager.GetESPHeight ( );
 
 			// draw health
@@ -42,13 +50,13 @@ void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 			vScreen.y += gDrawManager.GetESPHeight ( );
 
 			// draw distance
-			gDrawManager.DrawString ( vScreen.x, vScreen.y, dwGetTeamColor, "%f", Distance );
+			gDrawManager.DrawString ( vScreen.x, vScreen.y, dwGetTeamColor, "%3f", Distance );
 			vScreen += gDrawManager.GetESPHeight ( );
 		}
 	}
 	catch ( ... )
 	{
-		gBaseAPI.LogToConsole ( "ERROR IS DRAWPLAYERESP!!" );
+		gBaseAPI.LogToConsole ( "Error drawing on entity: %i", player.index ( ) );
 		return;
 	}
 }

@@ -35,29 +35,23 @@ void __fastcall Hooked_PaintTraverse ( PVOID pPanels, int edx, unsigned int vgui
 				return; //We don't want to draw at the menu.
 			}
 
+			if ( GetAsyncKeyState ( VK_F11 ) )
+			{
+				gNetworkedVar.dump ( );
+			}
+
 			//Test ESP code.
 
 			for ( int i = 0; i < gInts.EntList->GetHighestEntityIndex ( ); i++ )
 			{
-				CBaseEntity *pBaseLocalEnt = gPlayers[ me ].getEnt ( );
+				CPlayer localPlayer = gPlayers[ me ];
 
 				CPlayer player = gPlayers[ i ];
 
-				if ( player.getEnt ( ) == NULL || pBaseLocalEnt == NULL )
-					continue;
-
-				if ( pBaseLocalEnt->index == i )
-					continue;
-
-				if ( player.getEnt ( )->IsDormant ( ) )
+				if ( localPlayer != player )
 				{
-					player.disableGlow ( );
-					continue;
+					gEsp.DrawPlayerESP ( player, localPlayer );
 				}
-					
-
-				player.enableGlow ( );
-				
 			}
 			
 		}
@@ -104,6 +98,7 @@ void Intro ( void )
 		gInts.Cvar->ConsoleColorPrintf ( c, "=================================================\n" );
 
 		// populate offsets
+		gNetworkedVar.dump ( );
 		gPlayerVars.findOffset ( );
 
 	}

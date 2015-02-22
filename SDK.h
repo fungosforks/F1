@@ -137,6 +137,22 @@
 #define	HIDEHUD_VEHICLE_CROSSHAIR	( 1<<9 )	// Hide vehicle crosshair
 #define HIDEHUD_INVEHICLE			( 1<<10 )
 #define HIDEHUD_SCOPE				( 1<<11 )
+
+enum TFClassType
+{
+	TFClass_Unknown = 0,
+	TFClass_Scout,
+	TFClass_Sniper,
+	TFClass_Soldier,
+	TFClass_DemoMan,
+	TFClass_Medic,
+	TFClass_Heavy,
+	TFClass_Pyro,
+	TFClass_Spy,
+	TFClass_Engineer
+};
+
+
 //===================================================================================
 #pragma comment ( lib, "public/ImportLibrarys/tier0.lib" )
 #pragma comment ( lib, "public/ImportLibrarys/tier1.lib" )

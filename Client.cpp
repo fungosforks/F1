@@ -46,7 +46,7 @@ void __fastcall Hooked_CreateMove(PVOID pClient, int edx, int sequence_number, f
 {
 	try
 	{
-		CBaseEntity* pLocalBaseEntity = gInts.EntList->GetClientEntity ( me )->GetBaseEntity ( ); //Grab the local player's entity pointer.
+		CBaseEntity *pLocalBaseEntity = gInts.EntList->GetClientEntity ( me )->GetBaseEntity ( ); //Grab the local player's entity pointer.
 
 		if ( pLocalBaseEntity == NULL) //This should never happen, but never say never. 0xC0000005 is no laughing matter.
 			return;
@@ -58,9 +58,28 @@ void __fastcall Hooked_CreateMove(PVOID pClient, int edx, int sequence_number, f
 
 		//Do your client hook stuff here. This function is called once per tick. For time-critical functions, run your code in PaintTraverse. For move specific functions, run them here.
 
-		if (pCommand->buttons & IN_JUMP)
+		if ( pLocalBaseEntity == NULL )
+			return;
+
+		EHANDLE hActiveWeapon = ( EHANDLE )*( MakePtr ( int *, pLocalBaseEntity, gPlayerVars.m_hActiveWeapon ) );
+		CBaseCombatWeapon *pBaseWeapon = dynamic_cast< CBaseCombatWeapon * >( gInts.EntList->GetClientEntityFromHandle ( hActiveWeapon ) );
+
+		if ( pBaseWeapon == NULL )
+			return;
+
+		FileWeaponInfo_t *info = GetFileWeaponInfoFromHandle ( pBaseWeapon->GetWeaponFileInfoHandle ( ) );
+
+		if ( info->iSlot == 3 && *MakePtr ( bool *, pLocalBaseEntity, gPlayerVars.m_bReadyToBackstab ) )
 		{
-			pCommand->buttons |= ~IN_JUMP; // bunny ho-op
+			pCommand->buttons |= IN_ATTACK;
+		}
+
+		if ( pCommand->buttons & IN_JUMP )
+		{
+			int iFlags = pLocalBaseEntity->GetFlags ( );
+
+			if ( !( iFlags & FL_ONGROUND ) )
+				pCommand->buttons &= ~IN_JUMP;
 		}
 	}
 	catch(...)

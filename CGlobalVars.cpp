@@ -41,10 +41,12 @@ void CPlayerVars::findOffset ( )
 	this->m_iHealth = getOffset ( "DT_BasePlayer", "m_iHealth" );
 	this->m_lifeState = getOffset ( "DT_BasePlayer", "m_lifeState" );
 	this->m_iTeamNum = getOffset ( "DT_BaseEntity", "m_iTeamNum" );
-	this->m_iPlayerClass = getOffset ( "DT_TFPlayer", "m_PlayerClass" ) + 0x04; //m_iClass
+	this->m_iPlayerClass = getOffset ( "DT_TFPlayer", "m_playerClass" ) + 0x4; //m_iClass
 	this->m_fFlags = getOffset ( "DT_BasePlayer", "m_fFlags" );
 	this->m_Shared = getOffset ( "DT_TFPlayer", "m_Shared" );
 	this->m_bGlowEnabled = getOffset ( "DT_TFPlayer", "m_bGlowEnabled" );
+	this->m_hActiveWeapon = getOffset ( "DT_BaseCombatCharacter", "m_hActiveWeapon" );
+	this->m_bReadyToBackstab = getOffset ( "DT_TFWeaponKnife", "m_bReadyToBackstab" );
 	/* m_Shared subclass */
 	this->m_nPlayerCond = getOffset ( "DT_TFPlayerShared", "m_nPlayerCond" );
 
@@ -74,28 +76,8 @@ void DumpOffset ( char* file )
 	FILE *fp;
 	fp = fopen ( file, "a+" );
 
-	ClientClass *pClass = gInts.Client->GetAllClasses ( );
+	DumpOffset ( fp );
 
-	for ( ; pClass; pClass = pClass->m_pNext )
-	{
-		RecvTable *pTable = pClass->m_pRecvTable;
-
-		fprintf ( fp, "-- [ %s | [%i] ]\n", pClass->m_pNetworkName, pTable->GetNumProps ( ) );
-
-		for ( int i = 0; i < pTable->GetNumProps ( ); i++ )
-		{
-			RecvProp *pProp = pTable->GetProp ( i );
-
-			if ( !pProp ) continue;
-			fprintf ( fp, " -- > %s [0x%.4X]\n", pProp->GetName ( ), pProp->GetOffset ( ) );
-
-			if ( pProp->GetDataTable ( ) )
-			{
-				DumpTable ( pProp->GetDataTable ( ), fp );
-			}
-		}
-		fprintf ( fp, "-- END [ %s | [%i] ]\n", pClass->m_pNetworkName, pTable->GetNumProps ( ) );
-	}
 	fclose ( fp );
 }
 
@@ -107,38 +89,37 @@ void DumpOffset ( FILE *fp )
 	{
 		RecvTable *pTable = pClass->m_pRecvTable;
 
-		fprintf ( fp, "-- [ %s | [%i] ]\n", pClass->m_pNetworkName, pTable->GetNumProps ( ) );
+		fprintf ( fp, "> %s [%i]\n", pClass->m_pNetworkName, pTable->GetNumProps ( ) );
 
 		for ( int i = 0; i < pTable->GetNumProps ( ); i++ )
 		{
 			RecvProp *pProp = pTable->GetProp ( i );
 
 			if ( !pProp ) continue;
-			fprintf ( fp, " -- > %s [0x%.4X]\n", pProp->GetName ( ), pProp->GetOffset ( ) );
+			fprintf ( fp, "-> %s [0x%.4X]\n", pProp->GetName ( ), pProp->GetOffset ( ) );
 
 			if ( pProp->GetDataTable ( ) )
 			{
 				DumpTable ( pProp->GetDataTable ( ), fp );
 			}
 		}
-		fprintf ( fp, "-- END [ %s | [%i] ]\n", pClass->m_pNetworkName, pTable->GetNumProps ( ) );
 	}
 }
 //===================================================================================
 void DumpTable ( RecvTable *pTable, FILE* fp )
 {
-	fprintf ( fp, "	-- SUB [ %s | [%i] ]\n", pTable->GetName ( ), pTable->GetNumProps ( ) );
+	fprintf ( fp, "--> %s | [%i]\n", pTable->GetName ( ), pTable->GetNumProps ( ) );
 
 	for ( int i = 0; i < pTable->GetNumProps ( ); i++ )
 	{
 		RecvProp *pProp = pTable->GetProp ( i );
 
 		if ( !pProp ) continue;
-		fprintf ( fp, "		-- -- > %s [0x%.4X]\n", pProp->GetName ( ), pProp->GetOffset ( ) );
+		fprintf ( fp, "---> %s [0x%.4X\n", pProp->GetName ( ), pProp->GetOffset ( ) );
 		if ( pProp->GetDataTable ( ) )
 			DumpTable ( pProp->GetDataTable ( ), fp );
 	}
-	fprintf ( fp, "	-- END SUB [ %s | [%i] ]\n", pTable->GetName ( ), pTable->GetNumProps ( ) );
+	fprintf ( fp, "> %s | [%i]\n", pTable->GetName ( ), pTable->GetNumProps ( ) );
 }
 //===================================================================================
 

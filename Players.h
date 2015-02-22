@@ -7,69 +7,67 @@
 // instead of storing pointers, they store the index that the pointer relates to
 class CPlayer
 {
-	//int m_index;
-
-	CBaseHandle m_handleToEnt;
+	int m_index;
 
 public:
 
 	inline void init ( int index )
 	{
-		m_handleToEnt = CBaseHandle ( index );
+		m_index = index;
 	}
 
-	inline const CBaseHandle handle ( ) const
+	inline const int index ( ) const
 	{
-		return m_handleToEnt;
+		return m_index;
 	}
 
-	inline BYTE GetLifeState ( )
+	inline BYTE GetLifeState ( ) const
 	{
 		return *MakePtr ( byte *, getEnt ( ), gPlayerVars.m_iState );
 	}
 
-	inline int GetHealth ( )
+	inline int GetHealth ( ) const
 	{
 		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iHealth );
 	}
 
-	inline int GetTeam ( )
+	inline int GetTeam ( ) const
 	{
 		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iTeamNum );
 	}
 
-	inline int GetMaxHealth ( ) // NULLL
+	inline int GetMaxHealth ( ) const
 	{
 		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iMaxHealth );
 	}
-	inline byte GetFlags ( )
+	inline byte GetFlags ( ) const
 	{
 		return *MakePtr ( byte *, getEnt ( ), gPlayerVars.m_fFlags );
 	}
-	inline int GetClass ( )
+	inline int GetClass ( ) const
 	{
 		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iClass );
 	}
-	inline bool GlowEnabled ( )
+	inline bool GlowEnabled ( ) const
 	{
 		return *MakePtr ( bool *, getEnt ( ), gPlayerVars.m_bGlowEnabled );
 	}
 
 	inline CBaseEntity *getEnt ( ) const
 	{
-		return gInts.EntList->GetClientEntityFromHandle ( m_handleToEnt )->GetBaseEntity ( );
+		return gInts.EntList->GetClientEntity ( m_index )->GetBaseEntity ( );
 	}
 
 	inline IClientEntity *getClientEntity ( ) const
 	{
-		return gInts.EntList->GetClientEntityFromHandle ( m_handleToEnt );
+		return gInts.EntList->GetClientEntity ( m_index );
 	}
 
-	inline bool operator== ( const CPlayer &b )
+	bool operator== ( const CPlayer &b )
 	{
 		const CPlayer a = *this;
 
-		if ( a.handle ( ) == b.handle ( ) )
+		if ( a.index ( ) == b.index ( ) )
 		{
 			return true;
 		}
@@ -77,15 +75,25 @@ public:
 		return false;
 	}
 
-	inline void enableGlow ( )
+	bool operator!= ( const CPlayer &b )
 	{
-		gGlow.EnableGlowOnEntity ( getEnt ( )->index );
+		return !(*this == b);
 	}
 
-	inline void disableGlow ( )
+	inline bool isEntityNull ( )
 	{
-		gGlow.DisableGlowOnEntity ( getEnt ( )->index );
+		return gInts.EntList->GetClientEntity ( m_index ) == NULL;
 	}
+
+	//inline void enableGlow ( )
+	//{
+	//	gGlow.EnableGlowOnEntity ( getEnt ( )->index );
+	//}
+
+	//inline void disableGlow ( )
+	//{
+	//	gGlow.DisableGlowOnEntity ( getEnt ( )->index );
+	//}
 
 };
 
@@ -102,7 +110,6 @@ public:
 		for ( unsigned int i = 0; i <= 64; i++ )
 		{
 			pPlayers[ i ].init ( i );
-			gInts.GlowManager.SetEntity ( i, pPlayers[ i ].getEnt ( ) );
 		}
 			
 	}
@@ -124,4 +131,28 @@ public:
 	}
 };
 
+
+class CPlayerHelper
+{
+
+public:
+	const char* szGetTF2Class ( int iClass )
+	{
+		switch ( iClass )
+		{
+		case TFClass_Scout: return "Scout";
+		case TFClass_Soldier: return "Soldier";
+		case TFClass_Pyro: return  "Pyro";
+		case TFClass_DemoMan: return "Demoman";
+		case TFClass_Heavy: return "Heavy";
+		case TFClass_Engineer: return "Engineer";
+		case TFClass_Medic: return "Medic";
+		case TFClass_Sniper: return "Sniper";
+		case TFClass_Spy: return "Spy";
+		}
+		return NULL;
+	}
+};
+
+extern CPlayerHelper gPlayerHelper;
 extern CPlayerList gPlayers;

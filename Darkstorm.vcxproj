@@ -105,7 +105,6 @@
     <ClInclude Include="CGlobalVars.h" />
     <ClInclude Include="Glow.h" />
     <ClInclude Include="Client.h" />
-    <ClInclude Include="CVAR.h" />
     <ClInclude Include="ESP.h" />
     <ClInclude Include="getvfunc.h" />
     <ClInclude Include="Panels.h" />
