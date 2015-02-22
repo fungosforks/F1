@@ -1,26 +1,23 @@
-c:\ds2014\release\vc140.pdb
-c:\ds2014\release\vmthooks.obj
-c:\ds2014\release\players.obj
-c:\ds2014\release\cbaseapi.obj
-c:\ds2014\release\panels.obj
-c:\ds2014\release\esp.obj
-c:\ds2014\release\dllmain.obj
-c:\ds2014\release\client.obj
-c:\ds2014\release\cdrawmanager.obj
-c:\ds2014\release\cglobalvars.obj
-c:\users\joshua\desktop\f1\release\vc140.pdb
-c:\users\joshua\desktop\f1\release\vmthooks.obj
-c:\ds2014\release\basehook.dll
-c:\ds2014\release\basehook.pdb
-c:\users\joshua\desktop\f1\release\nativecodeanalysis.read.1.tlog
-c:\users\joshua\desktop\f1\release\basehook.pdb
-c:\users\joshua\desktop\f1\release\settings.xml
-c:\users\joshua\desktop\f1\release\vc.nativecodeanalysis.all.xml
-c:\users\joshua\desktop\f1\release\basehook.dll
-c:\users\joshua\desktop\f1\release\basehook.dll.lastcodeanalysissucceeded
-c:\users\joshua\desktop\f1\release\darkstorm base.tlog\cl.command.1.tlog
-c:\users\joshua\desktop\f1\release\darkstorm base.tlog\cl.read.1.tlog
-c:\users\joshua\desktop\f1\release\darkstorm base.tlog\cl.write.1.tlog
-c:\users\joshua\desktop\f1\release\darkstorm base.tlog\link.command.1.tlog
-c:\users\joshua\desktop\f1\release\darkstorm base.tlog\link.read.1.tlog
-c:\users\joshua\desktop\f1\release\darkstorm base.tlog\link.write.1.tlog
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\BASEHOOK.DLL
+C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll.intermediate.manifest
+C:\Users\joshua\Documents\GitHub\F1\Release\basehook.pdb
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CBASEAPI.OBJ
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CDRAWMANAGER.OBJ
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CGLOBALVARS.OBJ
+C:\Users\joshua\Documents\GitHub\F1\Release\cl.command.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\CL.read.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\CL.write.1.tlog
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CLIENT.OBJ
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\DLLMAIN.OBJ
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\ESP.OBJ
+C:\Users\joshua\Documents\GitHub\F1\Release\link.command.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\link.read.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\link.write.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\mt.command.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\mt.read.1.tlog
+C:\Users\joshua\Documents\GitHub\F1\Release\mt.write.1.tlog
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\PANELS.OBJ
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\PLAYERS.OBJ
+C:\Users\joshua\Documents\GitHub\F1\Release\settings.xml
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\VC100.PDB
+C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\VMTHOOKS.OBJ

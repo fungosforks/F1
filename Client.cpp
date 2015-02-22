@@ -46,9 +46,9 @@ void __fastcall Hooked_CreateMove(PVOID pClient, int edx, int sequence_number, f
 {
 	try
 	{
-		CBaseEntity* pBaseEntity = GetBaseEnt(me); //Grab the local player's entity pointer.
+		CBaseEntity* pLocalBaseEntity = gInts.EntList->GetClientEntity ( me )->GetBaseEntity ( ); //Grab the local player's entity pointer.
 
-		if (pBaseEntity == NULL) //This should never happen, but never say never. 0xC0000005 is no laughing matter.
+		if ( pLocalBaseEntity == NULL) //This should never happen, but never say never. 0xC0000005 is no laughing matter.
 			return;
 
 		VMTManager& hook = VMTManager::GetHook(pClient); //Get a pointer to the instance of your VMTManager with the function GetHook.
@@ -58,9 +58,9 @@ void __fastcall Hooked_CreateMove(PVOID pClient, int edx, int sequence_number, f
 
 		//Do your client hook stuff here. This function is called once per tick. For time-critical functions, run your code in PaintTraverse. For move specific functions, run them here.
 
-		if (pCommand->buttons & IN_JUMP) //To prove we have control over the CUserCmd, write the IN_ATTACK bit every time we jump.
+		if (pCommand->buttons & IN_JUMP)
 		{
-			pCommand->buttons |= IN_ATTACK; //Set the IN_ATTACK flag.
+			pCommand->buttons |= ~IN_JUMP; // bunny ho-op
 		}
 	}
 	catch(...)

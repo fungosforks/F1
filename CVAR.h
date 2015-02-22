@@ -22,16 +22,16 @@ abstract_class IConVar
 {
 public:
 	// Value set
-	virtual void SetValue(const char *pValue) = 0;
-	virtual void SetValue(float flValue) = 0;
-	virtual void SetValue(int nValue) = 0;
+	virtual void SetValue ( const char *pValue ) = 0;
+	virtual void SetValue ( float flValue ) = 0;
+	virtual void SetValue ( int nValue ) = 0;
 
 	// Return name of command
-	virtual const char *GetName(void) const = 0;
+	virtual const char *GetName ( void ) const = 0;
 
 	// Accessors.. not as efficient as using GetState()/GetInfo()
 	// if you call these methods multiple times on the same IConVar
-	virtual bool IsFlagSet(int nFlag) const = 0;
+	virtual bool IsFlagSet ( int nFlag ) const = 0;
 };
 
 // unknown class
@@ -66,8 +66,8 @@ class ConVar : public IConVar
 	int		m_StringLength;
 
 	// Values
-	float	*m_fValue = MakePtr(float *, this, 0x2C);
-	int		*m_nValue = MakePtr(int *, this, 0x30);
+	float	*m_fValue = MakePtr ( float *, this, 0x2C );
+	int		*m_nValue = MakePtr ( int *, this, 0x30 );
 
 	// Min/Max values
 	bool	*m_bHasMin;
@@ -77,45 +77,45 @@ class ConVar : public IConVar
 
 
 public:
-	const char *GetName()
+	const char *GetName ( )
 	{
-		typedef const char *(__thiscall* OriginalFn)(PVOID);
-		return getvfunc<OriginalFn>(this, 4)(this);
+		typedef const char *( __thiscall* OriginalFn )( PVOID );
+		return getvfunc<OriginalFn> ( this, 4 )( this );
 	}
-	void SetValue(const char *pValue)
+	void SetValue ( const char *pValue )
 	{
-		typedef void(__thiscall* OriginalFn)(PVOID, const char *);
-		return getvfunc<OriginalFn>(this, 10)(this, pValue);
+		typedef void ( __thiscall* OriginalFn )( PVOID, const char * );
+		return getvfunc<OriginalFn> ( this, 10 )( this, pValue );
 	}
-	void SetValue(float flValue)
+	void SetValue ( float flValue )
 	{
-		typedef void(__thiscall* OriginalFn)(PVOID, float);
-		return getvfunc<OriginalFn>(this, 11)(this, flValue);
+		typedef void ( __thiscall* OriginalFn )( PVOID, float );
+		return getvfunc<OriginalFn> ( this, 11 )( this, flValue );
 	}
-	void SetValue(int iValue)
+	void SetValue ( int iValue )
 	{
-		typedef void(__thiscall* OriginalFn)(PVOID, int);
-		return getvfunc<OriginalFn>(this, 12)(this, iValue);
+		typedef void ( __thiscall* OriginalFn )( PVOID, int );
+		return getvfunc<OriginalFn> ( this, 12 )( this, iValue );
 	}
-	bool IsRegistered()
+	bool IsRegistered ( )
 	{
-		typedef bool(__thiscall* OriginalFn)(PVOID);
-		return getvfunc<OriginalFn>(this, 6)(this);
+		typedef bool ( __thiscall* OriginalFn )( PVOID );
+		return getvfunc<OriginalFn> ( this, 6 )( this );
 	}
-	bool IsFlagSet(int iFlag)
+	bool IsFlagSet ( int iFlag )
 	{
-		typedef bool(__thiscall* OriginalFn)(PVOID, int);
-		return getvfunc<OriginalFn>(this, 2)(this, iFlag);
+		typedef bool ( __thiscall* OriginalFn )( PVOID, int );
+		return getvfunc<OriginalFn> ( this, 2 )( this, iFlag );
 	}
-	bool IsCommand()
+	bool IsCommand ( )
 	{
-		typedef bool(__thiscall* OriginalFn)(PVOID);
-		return getvfunc<OriginalFn>(this, 1)(this);
+		typedef bool ( __thiscall* OriginalFn )( PVOID );
+		return getvfunc<OriginalFn> ( this, 1 )( this );
 	}
-	void AddFlags(int iFlags)
+	void AddFlags ( int iFlags )
 	{
-		typedef void(__thiscall* OriginalFn)(PVOID, int);
-		getvfunc<OriginalFn>(this, 2)(this, iFlags);
+		typedef void ( __thiscall* OriginalFn )( PVOID, int );
+		getvfunc<OriginalFn> ( this, 2 )( this, iFlags );
 	}
 };
 
@@ -124,63 +124,63 @@ public:
 class ConVarRef
 {
 public:
-	ConVarRef(const char *pName)
+	ConVarRef ( const char *pName )
 	{
-		Init(pName, false);
+		Init ( pName, false );
 	}
-	ConVarRef(const char *pName, bool bIgnoreMissing)
+	ConVarRef ( const char *pName, bool bIgnoreMissing )
 	{
-		Init(pName, bIgnoreMissing);
+		Init ( pName, bIgnoreMissing );
 	}
-	ConVarRef(IConVar *pConVar) // setup from existing IConVar pointer
+	ConVarRef ( IConVar *pConVar ) // setup from existing IConVar pointer
 	{
-		m_pConVar = pConVar; 
+		m_pConVar = pConVar;
 	}
 
-	void Init(const char *pName, bool bIgnoreMissing)
+	void Init ( const char *pName, bool bIgnoreMissing )
 	{
 		// call findVar or something similar
 	}
-	bool IsValid() const
+	bool IsValid ( ) const
 	{
 
 	}
-	bool IsFlagSet(int nFlags) const // check if flag is set
+	bool IsFlagSet ( int nFlags ) const // check if flag is set
 	{
-		return (m_pConVar->IsFlagSet(nFlags) != 0);
+		return ( m_pConVar->IsFlagSet ( nFlags ) != 0 );
 	}
-	IConVar *GetLinkedConVar() // return IConVar
+	IConVar *GetLinkedConVar ( ) // return IConVar
 	{
 		return m_pConVar;
 	}
 
 	// Get/Set value
-	float GetFloat(void) const // get as float
+	float GetFloat ( void ) const // get as float
 	{
 		return *m_pConVarState->m_fValue;
 	}
-	int GetInt(void) const // get as int
+	int GetInt ( void ) const // get as int
 	{
 		return *m_pConVarState->m_nValue;
 	}
-	bool GetBool() const { return !!GetInt(); } // get as bool ( calls get as int internally )
+	bool GetBool ( ) const { return !!GetInt ( ); } // get as bool ( calls get as int internally )
 
-	const char *GetString(void) const // get as char * - string
+	const char *GetString ( void ) const // get as char * - string
 	{
 		return m_pConVarState->m_pszString;
 	}
 
-	void SetValue(const char *pValue); // set as string
-	void SetValue(float flValue); // set as float
-	void SetValue(int nValue); // set as int
-	void SetValue(bool bValue); // set as bool (maybe calls set as int internally?)
+	void SetValue ( const char *pValue ); // set as string
+	void SetValue ( float flValue ); // set as float
+	void SetValue ( int nValue ); // set as int
+	void SetValue ( bool bValue ); // set as bool (maybe calls set as int internally?)
 
-	const char *GetName() const // get name of convar
+	const char *GetName ( ) const // get name of convar
 	{
-		return m_pConVar->GetName();
+		return m_pConVar->GetName ( );
 	}
 
-	const char *GetDefault() const // get default value of convar
+	const char *GetDefault ( ) const // get default value of convar
 	{
 		return m_pConVarState->m_pszDefaultValue;
 	}
@@ -200,17 +200,17 @@ public:
 class ICvar
 {
 public:
-	void ConsolePrintf(const char *pszMessage, ...)
+	void ConsolePrintf ( const char *pszMessage, ... )
 	{
 		//gBaseAPI.LogToConsole("ConsolePrintf: %s", pszMessage);
 
-		typedef void(__stdcall* OriginalFn)(const char*, ...);
-		getvfunc<OriginalFn>(this, 24)(pszMessage);
+		typedef void ( __stdcall* OriginalFn )( const char*, ... );
+		getvfunc<OriginalFn> ( this, 24 )( pszMessage );
 	}
 
-	ConVar *FindVar(const char *var_name)
+	ConVar *FindVar ( const char *var_name )
 	{
-		typedef ConVar *(__thiscall* OriginalFn)(PVOID, const char*);
-		return getvfunc<OriginalFn>(this, 12)(this, var_name);
+		typedef ConVar *( __thiscall* OriginalFn )( PVOID, const char* );
+		return getvfunc<OriginalFn> ( this, 12 )( this, var_name );
 	}
 };

@@ -28,6 +28,9 @@
     <ClCompile Include="CGlobalVars.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Glow.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CBaseAPI.h">
@@ -51,9 +54,6 @@
     <ClInclude Include="SDK.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="WeaponList.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -66,10 +66,10 @@
     <ClInclude Include="ESP.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Trace.h">
+    <ClInclude Include="CVAR.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="CVAR.h">
+    <ClInclude Include="Glow.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

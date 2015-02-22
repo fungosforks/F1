@@ -3,11 +3,7 @@
   <Modules>
     <InjectorModule>
       <Enable>true</Enable>
-      <Path>C:\Users\joshua\Documents\GitHub\F1ssi0N\F1ssi0N\Release\basehook.dll</Path>
-    </InjectorModule>
-    <InjectorModule>
-      <Enable>true</Enable>
-      <Path>C:\Users\joshua\Desktop\F1\Release\basehook.dll</Path>
+      <Path>C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll</Path>
     </InjectorModule>
   </Modules>
   <Options>

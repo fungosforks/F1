@@ -4,92 +4,112 @@
 
 #include "Players.h"
 #include "ESP.h"
-#include "CGlobalVars.h"
 
 CScreenSize gScreenSize;
 
 //===================================================================================
-void __fastcall Hooked_PaintTraverse( PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce )
+void __fastcall Hooked_PaintTraverse ( PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce )
 {
 
 	try
 	{
-		VMTManager& hook = VMTManager::GetHook(pPanels); //Get a pointer to the instance of your VMTManager with the function GetHook.
-		hook.GetMethod<void(__thiscall*)(PVOID, unsigned int, bool, bool)>(gOffsets.iPaintTraverseOffset)(pPanels, vguiPanel, forceRepaint, allowForce); //Call the original.
+		VMTManager& hook = VMTManager::GetHook ( pPanels ); //Get a pointer to the instance of your VMTManager with the function GetHook.
+		hook.GetMethod<void ( __thiscall* )( PVOID, unsigned int, bool, bool )> ( gOffsets.iPaintTraverseOffset )( pPanels, vguiPanel, forceRepaint, allowForce ); //Call the original.
 
 		static unsigned int vguiMatSystemTopPanel;
 
-		if (vguiMatSystemTopPanel == NULL)
+		if ( vguiMatSystemTopPanel == NULL )
 		{
-			const char* szName = gInts.Panels->GetName(vguiPanel);
-			if( szName[0] == 'M' && szName[3] == 'S' ) //Look for MatSystemTopPanel without using slow operations like strcmp or strstr.
+			const char* szName = gInts.Panels->GetName ( vguiPanel );
+			if ( szName[ 0 ] == 'M' && szName[ 3 ] == 'S' ) //Look for MatSystemTopPanel without using slow operations like strcmp or strstr.
 			{
 				vguiMatSystemTopPanel = vguiPanel;
-				Intro();
+				Intro ( );
 			}
 		}
-		
+
 		if ( vguiMatSystemTopPanel == vguiPanel ) //If we're on MatSystemTopPanel, call our drawing code.
 		{
-			if( gInts.Engine->IsDrawingLoadingImage() || !gInts.Engine->IsInGame( ) || !gInts.Engine->IsConnected() || gInts.Engine->Con_IsVisible( ) || ( ( GetAsyncKeyState(VK_F12) || gInts.Engine->IsTakingScreenshot( ) ) ) )
+			if ( gInts.Engine->IsDrawingLoadingImage ( ) || !gInts.Engine->IsInGame ( ) || !gInts.Engine->IsConnected ( ) || gInts.Engine->Con_IsVisible ( ) || ( ( GetAsyncKeyState ( VK_F12 ) || gInts.Engine->IsTakingScreenshot ( ) ) ) )
 			{
 				return; //We don't want to draw at the menu.
 			}
 
 			//Test ESP code.
 
-			// loop every entity
-
-			// crashes beyond this point
-			for (int iIndex = 0; iIndex < gInts.EntList->GetHighestEntityIndex(); iIndex++)
+			for ( int i = 0; i < gInts.EntList->GetHighestEntityIndex ( ); i++ )
 			{
-				gEsp.DrawPlayerESP(iIndex); // crash in this func
+				CBaseEntity *pBaseLocalEnt = gPlayers[ me ].getEnt ( );
+
+				CPlayer player = gPlayers[ i ];
+
+				if ( player.getEnt ( ) == NULL || pBaseLocalEnt == NULL )
+					continue;
+
+				if ( pBaseLocalEnt->index == i )
+					continue;
+
+				if ( player.getEnt ( )->IsDormant ( ) )
+				{
+					player.disableGlow ( );
+					continue;
+				}
+					
+
+				player.enableGlow ( );
+				
 			}
+			
 		}
 	}
-	catch(...)
+	catch ( ... )
 	{
-		gBaseAPI.LogToFile("Failed PaintTraverse");
-		gBaseAPI.ErrorBox("Failed PaintTraverse");
+		gBaseAPI.LogToFile ( "Failed PaintTraverse" );
+		gBaseAPI.ErrorBox ( "Failed PaintTraverse" );
 	}
 }
 //===================================================================================
-void Intro( void )
+void Intro ( void )
 {
 	try
 	{
-		gDrawManager.Initialize(); //Initalize the drawing class.
+		gDrawManager.Initialize ( ); //Initalize the drawing class.
 
-		gOffsets.dwWriteUserCmd = gBaseAPI.GetClientSignature( "55 8B EC 8B 45 10 83 EC 08 8B 40 04" ); //Grab WriteUserCmd from client.dll.
-		XASSERT(gOffsets.dwWriteUserCmd); //Make sure it's not 0.
-		#ifdef DEBUG
-		if (gOffsets.dwWriteUserCmd)
+		gOffsets.dwWriteUserCmd = gBaseAPI.GetClientSignature ( "55 8B EC 8B 45 10 83 EC 08 8B 40 04" ); //Grab WriteUserCmd from client.dll.
+		XASSERT ( gOffsets.dwWriteUserCmd ); //Make sure it's not 0.
+#ifdef DEBUG
+		if ( gOffsets.dwWriteUserCmd )
 		{
-			gBaseAPI.LogToFile( "dwWriteUserCmd client.dll+0x%.4X", gOffsets.dwWriteUserCmd - (DWORD)gBaseAPI.GetModuleHandleSafe("client.dll") );
+			gBaseAPI.LogToFile ( "dwWriteUserCmd client.dll+0x%.4X", gOffsets.dwWriteUserCmd - ( DWORD )gBaseAPI.GetModuleHandleSafe ( "client.dll" ) );
 		}
-		#endif
+#endif
 
-		gBaseAPI.LogToFile("Injection Successful"); //If the module got here without crashing, it is good day.
+		gBaseAPI.LogToFile ( "Injection Successful" ); //If the module got here without crashing, it is good day.
 
-		// create debug console
-		gBaseAPI.BuildDebugConsole();
+													   // create debug console
+		gBaseAPI.BuildDebugConsole ( );
 
-		ConVarRef cheats("sv_cheats");
+		Color c;
 
-		gBaseAPI.LogToConsole("sv_cheats convar @%X", cheats.GetLinkedConVar);
+		c.SetColor ( 255, 0, 0, 255 );
 
-		//gBaseAPI.LogToConsole("Dumping netvar offsets!!");
-
-		//// dump offsets to netvars.log
-		//gNetworkedVar.dump();
+		gInts.Cvar->ConsoleColorPrintf ( c, "=================================================\n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, "  _____ _ ____   ___  _ ____  \n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, " |  ___/ |___ \\ / _ \\/ | ___| \n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, " | |_  | | __) | | | | |___ \\ \n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, " |  _| | |/ __/| |_| | |___) |\n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, " |_|   |_|_____|\\___/|_|____/ \n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, "Fissi0N f12015 hack loaded successfully.\n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, "Have Fun!\n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, "=================================================\n" );
 
 		// populate offsets
-		gPlayerVars.findOffset();
+		gPlayerVars.findOffset ( );
 
 	}
-	catch(...)
+	catch ( ... )
 	{
-		gBaseAPI.LogToFile("Failed Intro");
-		gBaseAPI.ErrorBox("Failed Intro");
+		gBaseAPI.LogToFile ( "Failed Intro" );
+		gBaseAPI.ErrorBox ( "Failed Intro" );
 	}
 }

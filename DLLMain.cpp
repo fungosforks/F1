@@ -27,9 +27,7 @@ DWORD WINAPI dwMainThread( LPVOID lpArguments )
 		VGUIFactory = ( CreateInterfaceFn ) GetProcAddress( gBaseAPI.GetModuleHandleSafe( "vguimatsurface.dll" ), "CreateInterface" );
 		gInts.Surface = ( ISurface* ) VGUIFactory( "VGUI_Surface030", NULL );
 		VGUI2Factory = ( CreateInterfaceFn ) GetProcAddress( gBaseAPI.GetModuleHandleSafe( "vgui2.dll" ), "CreateInterface" );
-		gBaseAPI.LogToFile("Getting CVar Factory!");
 		CVarFactory = (CreateInterfaceFn)GetProcAddress(gBaseAPI.GetModuleHandleSafe("vstdlib.dll"), "CreateInterface");
-		gBaseAPI.LogToFile("Getting CVar Interface!");
 		gInts.Cvar = (ICvar*)CVarFactory("VEngineCvar004", NULL);
 		XASSERT(gInts.Cvar);
 

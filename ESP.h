@@ -11,33 +11,33 @@
 class CEsp
 {
 
-	float flGetDistance(Vector vOrigin, Vector vLocalOrigin)
+	float flGetDistance ( Vector vOrigin, Vector vLocalOrigin )
 	{
 		Vector vDelta = vOrigin - vLocalOrigin;
 
-		float m_fDistance = FastSqrt(vDelta.Length());
+		float m_fDistance = FastSqrt ( vDelta.Length ( ) );
 
-		if (m_fDistance < 1.0f)
+		if ( m_fDistance < 1.0f )
 			return 1.0f;
 
 		return m_fDistance;
 	}
 
-	void GetWorldSpaceCenter(CBaseEntity *pBaseEnt, Vector& vWorldSpaceCenter)
+	void GetWorldSpaceCenter ( CBaseEntity *pBaseEnt, Vector& vWorldSpaceCenter )
 	{
-		if (pBaseEnt)
+		if ( pBaseEnt )
 		{
 			Vector vMin, vMax;
-			pBaseEnt->GetRenderBounds(vMin, vMax);
-			vWorldSpaceCenter = pBaseEnt->GetAbsOrigin();
-			vWorldSpaceCenter.z += (vMin.z + vMax.z) / 2.0f;
+			pBaseEnt->GetRenderBounds ( vMin, vMax );
+			vWorldSpaceCenter = pBaseEnt->GetAbsOrigin ( );
+			vWorldSpaceCenter.z += ( vMin.z + vMax.z ) / 2.0f;
 		}
 	}
 
 public:
-
-	void DrawPlayerESP(int iIndex);
-
+	// private
+	// USE THE WRAPPER
+	void DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer );
 };
 
 extern CEsp gEsp;

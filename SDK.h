@@ -27,6 +27,7 @@
 #pragma optimize("gsy",on)
 
 #define VERSION_SAFE_STEAM_API_INTERFACES
+#define GLOWS_ENABLE
 
 #include <Security.h>
 #include <shlwapi.h>
@@ -152,13 +153,15 @@ using namespace std;
 #define MakePtr( Type, dwBase, dwOffset ) ( ( Type )( DWORD( dwBase ) + (DWORD)( dwOffset ) ) )
 //===================================================================================
 
+// push this include up to stop the macros interfering with it
+#include "VMTHooks.h"
+
 #define VMTManager toolkit::VMTManager
 #define VMTBaseManager toolkit::VMTBaseManager
 
 typedef void* ( __cdecl* CreateInterface_t )( const char*, int* );
-typedef void* (*CreateInterfaceFn)(const char *pName, int *pReturnCode);
+typedef void* ( *CreateInterfaceFn )( const char *pName, int *pReturnCode );
 
-#define GetBaseEnt(x) gInts.EntList->GetClientEntity(x)->GetBaseEntity()
 #define me gInts.Engine->GetLocalPlayer()
 
 class CInterfaces
@@ -172,10 +175,12 @@ public:
 	IBaseClientDLL* Client;
 	ICvar* Cvar;
 	IEngineTrace *EngineTrace;
+	CGlowObjectManager GlowManager; // wtf am i doing?? nb. dont do this.
 };
 extern CInterfaces gInts;
 
 #include "CBaseAPI.h"
-#include "VMTHooks.h"
+#include "CGlobalVars.h"
+#include "Glow.h"
 //===================================================================================
 #endif

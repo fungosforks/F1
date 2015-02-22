@@ -1,4 +1,5 @@
-#include "sdk.h"
+#include "CBaseAPI.h"
+#include "SDK.h"
 #include <time.h>
 
 #define INRANGE(x,a,b)    (x >= a && x <= b) 

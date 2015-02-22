@@ -1,13 +1,16 @@
 #pragma once
 
-#include "SDK.h"
+#include <stdio.h>
+#include <Windows.h>
 
-int getOffset_deep(char *szClassName, char *szVariable);
-int getOffset_deep_sub(RecvTable* pTable, char *szClassName, char *szVariable);
-void DumpTable(RecvTable *pTable, FILE* fp);
-int getOffset(char *szClassName, char *szVariable);
-void DumpOffset(char* file);
-void DumpOffset(FILE *fp);
+class RecvTable;
+
+int getOffset_deep ( char *szClassName, char *szVariable );
+int getOffset_deep_sub ( RecvTable* pTable, char *szClassName, char *szVariable );
+void DumpTable ( RecvTable *pTable, FILE* fp );
+int getOffset ( char *szClassName, char *szVariable );
+void DumpOffset ( char* file );
+void DumpOffset ( FILE *fp );
 
 class CNetworkedVar
 {
@@ -15,18 +18,18 @@ class CNetworkedVar
 
 public:
 
-	CNetworkedVar();
-	~CNetworkedVar();
+	CNetworkedVar ( );
+	~CNetworkedVar ( );
 
-	FILE *getFilePtr();
-	void dump();
+	FILE *getFilePtr ( );
+	void dump ( );
 };
 
 class CPlayerVars
 {
 public:
 
-	void findOffset();
+	void findOffset ( );
 
 	int m_lifeState;
 	int m_iHealth;
@@ -48,16 +51,35 @@ public:
 	int m_iAmmoRockets;
 	int m_iAmmoMetal;
 	int m_fFlags;
+	bool m_bGlowEnabled;
 };
 
 class COffsets
 {
 public:
 	DWORD dwWriteUserCmd;
-	int iCreateMoveOffset = 21, iWriteUserCmdToBufferOffset = 23, iPaintTraverseOffset = 41;
+	int iCreateMoveOffset;
+	int iWriteUserCmdToBufferOffset;
+	int iPaintTraverseOffset;
+
+	COffsets ( )
+	{
+		iCreateMoveOffset = 21;
+		iWriteUserCmdToBufferOffset = 23;
+		iPaintTraverseOffset = 41;
+	}
+};
+
+class CVars
+{
+public:
+	bool f1Cheats;
+	bool f1Esp;
+	bool f1BHop;
 };
 
 
 extern CNetworkedVar gNetworkedVar;
 extern CPlayerVars gPlayerVars;
 extern COffsets gOffsets;
+extern CVars gVars;

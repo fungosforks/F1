@@ -13,26 +13,26 @@
 class CDrawManager
 {
 public:
-	void Initialize( );
-	void DrawString( int x, int y, DWORD dwColor, const wchar_t *pszText);
-	void DrawString( int x, int y, DWORD dwColor, const char *pszText, ... );
-	byte GetESPHeight( );
+	void Initialize ( );
+	void DrawString ( int x, int y, DWORD dwColor, const wchar_t *pszText );
+	void DrawString ( int x, int y, DWORD dwColor, const char *pszText, ... );
+	byte GetESPHeight ( );
 	int GetPixelTextSize ( const char *pszText );
 	int GetPixelTextSize ( wchar_t *pszText );
-	void DrawBox( Vector vOrigin, int r, int g, int b, int alpha, int box_width, int radius );
-	void DrawRect( int x, int y, int w, int h, DWORD dwColor );
-	void OutlineRect( int x, int y, int w, int h, DWORD dwColor );
-	bool WorldToScreen( Vector &vOrigin, Vector &vScreen );
-	void DrawPlayerBox(CBaseEntity * pEnt, DWORD dwColor);
-	void DrawPlayerHealthBox(CBaseEntity * pEnt, DWORD dwColor, int health, int maxHealth);
-	DWORD dwGetTeamColor( int iIndex )
+	void DrawBox ( Vector vOrigin, int r, int g, int b, int alpha, int box_width, int radius );
+	void DrawRect ( int x, int y, int w, int h, DWORD dwColor );
+	void OutlineRect ( int x, int y, int w, int h, DWORD dwColor );
+	bool WorldToScreen ( Vector &vOrigin, Vector &vScreen );
+	void DrawPlayerBox ( CBaseEntity * pEnt, DWORD dwColor );
+	void DrawPlayerHealthBox ( CBaseEntity * pEnt, DWORD dwColor, int health, int maxHealth );
+	DWORD dwGetTeamColor ( int iIndex )
 	{
-		static DWORD dwColors[] = { 0, //Dummy
-					 0, // 1 Teamone (UNUSED)
-					 0xFF8000FF, // 2 Teamtwo (RED)
-					 0x0080FFFF, // 3 teamthree (BLUE)
-					 0 // 4 Teamfour (UNUSED) 
-					 };
+		static DWORD dwColors[ ] = { 0, //Dummy
+			0, // 1 Teamone (UNUSED)
+			0xFF8000FF, // 2 Teamtwo (RED)
+			0x0080FFFF, // 3 teamthree (BLUE)
+			0 // 4 Teamfour (UNUSED) 
+		};
 		return dwColors[ iIndex ];
 	}
 private:

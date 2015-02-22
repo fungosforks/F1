@@ -2,62 +2,89 @@
 
 #include "SDK.h"
 
-#include "CGlobalVars.h"
 
+// genius player mechanism
+// instead of storing pointers, they store the index that the pointer relates to
 class CPlayer
 {
-	int m_index;
+	//int m_index;
 
-	// private
-	// use () to infer getEnt()
-	inline CBaseEntity *getEnt()
-	{
-		return GetBaseEnt(m_index);
-	}
+	CBaseHandle m_handleToEnt;
 
 public:
-	
-	inline void init(int index)
+
+	inline void init ( int index )
 	{
-		m_index = index;
+		m_handleToEnt = CBaseHandle ( index );
 	}
 
-	inline int index()
+	inline const CBaseHandle handle ( ) const
 	{
-		return m_index;
+		return m_handleToEnt;
 	}
 
-	inline BYTE GetLifeState()
+	inline BYTE GetLifeState ( )
 	{
-		return *MakePtr(byte *, getEnt(), gPlayerVars.m_iState);
+		return *MakePtr ( byte *, getEnt ( ), gPlayerVars.m_iState );
 	}
 
-	inline int GetHealth()
+	inline int GetHealth ( )
 	{
-		return *MakePtr(int *, getEnt(), gPlayerVars.m_iHealth);
+		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iHealth );
 	}
 
-	inline int GetTeam()
+	inline int GetTeam ( )
 	{
-		return *MakePtr(int *, getEnt(), gPlayerVars.m_iTeamNum);
+		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iTeamNum );
 	}
 
-	inline int GetMaxHealth()
+	inline int GetMaxHealth ( ) // NULLL
 	{
-		return *MakePtr(int *, getEnt(), gPlayerVars.m_iMaxHealth);
+		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iMaxHealth );
 	}
-	inline byte GetFlags()
+	inline byte GetFlags ( )
 	{
-		return *MakePtr(byte *, getEnt(), gPlayerVars.m_fFlags);
+		return *MakePtr ( byte *, getEnt ( ), gPlayerVars.m_fFlags );
 	}
-	inline int GetClass()
+	inline int GetClass ( )
 	{
-		return *MakePtr(int *, getEnt(), gPlayerVars.m_iClass);
+		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iClass );
+	}
+	inline bool GlowEnabled ( )
+	{
+		return *MakePtr ( bool *, getEnt ( ), gPlayerVars.m_bGlowEnabled );
 	}
 
-	inline CBaseEntity *operator()()
+	inline CBaseEntity *getEnt ( ) const
 	{
-		return getEnt();
+		return gInts.EntList->GetClientEntityFromHandle ( m_handleToEnt )->GetBaseEntity ( );
+	}
+
+	inline IClientEntity *getClientEntity ( ) const
+	{
+		return gInts.EntList->GetClientEntityFromHandle ( m_handleToEnt );
+	}
+
+	inline bool operator== ( const CPlayer &b )
+	{
+		const CPlayer a = *this;
+
+		if ( a.handle ( ) == b.handle ( ) )
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	inline void enableGlow ( )
+	{
+		gGlow.EnableGlowOnEntity ( getEnt ( )->index );
+	}
+
+	inline void disableGlow ( )
+	{
+		gGlow.DisableGlowOnEntity ( getEnt ( )->index );
 	}
 
 };
@@ -68,30 +95,33 @@ class CPlayerList
 
 public:
 
-	inline CPlayerList()
+	inline CPlayerList ( )
 	{
-		pPlayers = new CPlayer[65];
+		pPlayers = new CPlayer[ 65 ];
 
-		for (unsigned int i = 0; i <= 64; i++)
-			pPlayers[i].init(i);
+		for ( unsigned int i = 0; i <= 64; i++ )
+		{
+			pPlayers[ i ].init ( i );
+			gInts.GlowManager.SetEntity ( i, pPlayers[ i ].getEnt ( ) );
+		}
+			
 	}
 
-	inline ~CPlayerList()
+	inline ~CPlayerList ( )
 	{
-		delete[] pPlayers;
+		delete[ ] pPlayers;
 	}
 
-	inline CPlayer& operator [] (unsigned int i) const
+	inline CPlayer& operator [] ( unsigned int i ) const
 	{
-		if (i == me)
-			return pPlayers[gInts.Engine->GetLocalPlayer()];
+		if ( i == me )
+			return pPlayers[ gInts.Engine->GetLocalPlayer ( ) ];
 
-		else if (i > 64 || i <= 0)
-			return pPlayers[0];
+		else if ( i > 64 || i <= 0 )
+			return pPlayers[ 0 ];
 
-		return pPlayers[i];
+		return pPlayers[ i ];
 	}
-
 };
 
 extern CPlayerList gPlayers;

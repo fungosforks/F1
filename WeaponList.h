@@ -178,7 +178,7 @@ enum heavyweapons
 	//Primary
 	WPN_Minigun = 15,
 	WPN_NewMinigun = 202,
-	WPN_Natascha =  41,
+	WPN_Natascha = 41,
 	WPN_IronCurtain = 298,
 	WPN_BrassBeast = 312,
 	WPN_Tomislav = 424,
@@ -323,7 +323,7 @@ enum spyweapons
 	//Primary
 	WPN_Revolver = 24,
 	WPN_NewRevolver = 210,
-	WPN_Ambassador =  61,
+	WPN_Ambassador = 61,
 	WPN_BigKill = 161,
 	WPN_Letranger = 224,
 	WPN_Enforcer = 460,
