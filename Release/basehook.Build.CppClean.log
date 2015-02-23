@@ -1,23 +1,36 @@
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\BASEHOOK.DLL
-C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll.intermediate.manifest
-C:\Users\joshua\Documents\GitHub\F1\Release\basehook.pdb
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CBASEAPI.OBJ
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CDRAWMANAGER.OBJ
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CGLOBALVARS.OBJ
-C:\Users\joshua\Documents\GitHub\F1\Release\cl.command.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\CL.read.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\CL.write.1.tlog
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\CLIENT.OBJ
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\DLLMAIN.OBJ
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\ESP.OBJ
-C:\Users\joshua\Documents\GitHub\F1\Release\link.command.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\link.read.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\link.write.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\mt.command.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\mt.read.1.tlog
-C:\Users\joshua\Documents\GitHub\F1\Release\mt.write.1.tlog
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\PANELS.OBJ
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\PLAYERS.OBJ
-C:\Users\joshua\Documents\GitHub\F1\Release\settings.xml
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\VC100.PDB
-C:\USERS\JOSHUA\DOCUMENTS\GITHUB\F1\RELEASE\VMTHOOKS.OBJ
+c:\users\joshua\documents\github\f1\release\vmthooks.obj
+c:\users\joshua\documents\github\f1\release\players.obj
+c:\users\joshua\documents\github\f1\release\cbaseapi.obj
+c:\users\joshua\documents\github\f1\release\panels.obj
+c:\users\joshua\documents\github\f1\release\esp.obj
+c:\users\joshua\documents\github\f1\release\dllmain.obj
+c:\users\joshua\documents\github\f1\release\client.obj
+c:\users\joshua\documents\github\f1\release\cglobalvars.obj
+c:\users\joshua\documents\github\f1\release\cdrawmanager.obj
+c:\users\joshua\documents\github\f1\release\vc100.pdb
+c:\users\joshua\documents\github\f1\release\glow.obj
+c:\users\joshua\documents\github\f1\release\basehook.dll
+c:\users\joshua\documents\github\f1\release\basehook.dll.intermediate.manifest
+c:\users\joshua\documents\github\f1\release\basehook.pdb
+c:\users\joshua\documents\github\f1\release\vc120.pdb
+c:\users\joshua\documents\github\f1\release\concallbacks.obj
+c:\users\joshua\documents\github\f1\release\vc140.pdb
+c:\users\joshua\documents\github\f1\release\basehook.lib
+c:\users\joshua\documents\github\f1\release\basehook.exp
+c:\users\joshua\documents\github\f1\release\cl.command.1.tlog
+c:\users\joshua\documents\github\f1\release\cl.read.1.tlog
+c:\users\joshua\documents\github\f1\release\cl.write.1.tlog
+c:\users\joshua\documents\github\f1\release\link.command.1.tlog
+c:\users\joshua\documents\github\f1\release\link.read.1.tlog
+c:\users\joshua\documents\github\f1\release\link.write.1.tlog
+c:\users\joshua\documents\github\f1\release\mt.command.1.tlog
+c:\users\joshua\documents\github\f1\release\mt.read.1.tlog
+c:\users\joshua\documents\github\f1\release\mt.write.1.tlog
+c:\users\joshua\documents\github\f1\release\settings.xml
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\cl.command.1.tlog
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\cl.read.1.tlog
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\cl.write.1.tlog
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\darkstorm base.write.1u.tlog
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\link.command.1.tlog
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\link.read.1.tlog
+c:\users\joshua\documents\github\f1\release\darkstorm base.tlog\link.write.1.tlog

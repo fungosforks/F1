@@ -1,31 +1,36 @@
-﻿Build started 22/02/2015 21:35:40.
-     1>Project "C:\Users\joshua\Documents\GitHub\F1\Darkstorm.vcxproj" on node 2 (Build target(s)).
+﻿Build started 23/02/2015 16:19:37.
+     1>Project "C:\Users\joshua\Documents\GitHub\F1\Darkstorm.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : Access to the path 'c:\users\joshua\documents\github\f1\release\basehook.dll' is denied.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Ipublic\shared\sdk /Ipublic\client\sdk /Ipublic\shared /Ipublic\inputsystem /Ipublic\vstlib /Ipublic\tier3 /Ipublic\tier2 /Ipublic\tier1 /Ipublic\tier0 /Ipublic /Ipublic\vgui /Ipublic\client /Ipublic\common /Zi /nologo /W2 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D BASEHOOK_EXPORTS /D TF2BASE_EXPORTS /D _WINDLL /D _MBCS /GF /Gm- /EHa /MD /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CBaseAPI.cpp CDrawManager.cpp CGlobalVars.cpp Client.cpp DLLMain.cpp ESP.cpp Glow.cpp Panels.cpp Players.cpp
-         CBaseAPI.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Ipublic\shared\sdk /Ipublic\client\sdk /Ipublic\shared /Ipublic\inputsystem /Ipublic\vstlib /Ipublic\tier3 /Ipublic\tier2 /Ipublic\tier1 /Ipublic\tier0 /Ipublic /Ipublic\vgui /Ipublic\client /Ipublic\common /Zi /nologo /W2 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D BASEHOOK_EXPORTS /D TF2BASE_EXPORTS /D _USING_V110_SDK71_ /D _WINDLL /D _MBCS /GF /Gm- /EHa /MD /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CDrawManager.cpp CGlobalVars.cpp Client.cpp DLLMain.cpp ESP.cpp Glow.cpp Netvar.cpp Panels.cpp CBaseAPI.cpp Players.cpp VMTHooks.cpp
          CDrawManager.cpp
          CGlobalVars.cpp
          Client.cpp
          DLLMain.cpp
          ESP.cpp
          Glow.cpp
+         Netvar.cpp
          Panels.cpp
+         CBaseAPI.cpp
          Players.cpp
+         VMTHooks.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:"LIBCMT.lib,LIBCMTD.lib" /MANIFEST /ManifestFile:"Release\basehook.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\joshua\Documents\GitHub\F1\Release\basehook.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\joshua\Documents\GitHub\F1\Release\basehook.lib" /MACHINE:X86 /DLL Release\CDrawManager.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:"LIBCMT.lib,LIBCMTD.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\joshua\Documents\GitHub\F1\Release\basehook.pdb" /SUBSYSTEM:WINDOWS,"5.01" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\joshua\Documents\GitHub\F1\Release\basehook.lib" /MACHINE:X86 /SAFESEH /DLL Release\CDrawManager.obj
          Release\CGlobalVars.obj
          Release\Client.obj
          Release\DLLMain.obj
          Release\ESP.obj
          Release\Glow.obj
+         Release\Netvar.obj
          Release\Panels.obj
          Release\CBaseAPI.obj
          Release\Players.obj
          Release\VMTHooks.obj
-     1>Client.obj : error LNK2001: unresolved external symbol "class FileWeaponInfo_t * __cdecl GetFileWeaponInfoFromHandle(unsigned short)" (?GetFileWeaponInfoFromHandle@@YAPAVFileWeaponInfo_t@@G@Z)
-     1>C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "C:\Users\joshua\Documents\GitHub\F1\Darkstorm.vcxproj" (Build target(s)) -- FAILED.
+         Generating code
+         Finished generating code
+         Darkstorm.vcxproj -> C:\Users\joshua\Documents\GitHub\F1\Release\basehook.dll
+     1>Done Building Project "C:\Users\joshua\Documents\GitHub\F1\Darkstorm.vcxproj" (Rebuild target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:18.94
+Time Elapsed 00:00:44.25

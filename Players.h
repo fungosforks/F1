@@ -152,6 +152,10 @@ public:
 		}
 		return NULL;
 	}
+	const unsigned int getWeaponID ( CBaseCombatWeapon *pBaseWeapon)
+	{
+		return pBaseWeapon->GetClientClass ( )->m_ClassID;
+	}
 };
 
 extern CPlayerHelper gPlayerHelper;

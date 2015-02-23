@@ -66,10 +66,10 @@ void __fastcall Hooked_CreateMove(PVOID pClient, int edx, int sequence_number, f
 
 		if ( pBaseWeapon == NULL )
 			return;
+		
+		int id = gPlayerHelper.getWeaponID ( pBaseWeapon );
 
-		FileWeaponInfo_t *info = GetFileWeaponInfoFromHandle ( pBaseWeapon->GetWeaponFileInfoHandle ( ) );
-
-		if ( info->iSlot == 3 && *MakePtr ( bool *, pLocalBaseEntity, gPlayerVars.m_bReadyToBackstab ) )
+		if ( id == CTFKnife && *MakePtr ( bool *, pLocalBaseEntity, gPlayerVars.m_bReadyToBackstab ) )
 		{
 			pCommand->buttons |= IN_ATTACK;
 		}

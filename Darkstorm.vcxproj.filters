@@ -31,6 +31,9 @@
     <ClCompile Include="Glow.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Netvar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CBaseAPI.h">
@@ -67,6 +70,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Glow.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Netvar.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
