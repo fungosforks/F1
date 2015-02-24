@@ -22,7 +22,9 @@ class netvar_tree
 	map_type nodes;
 
 public:
-	netvar_tree ( );
+	//netvar_tree ( );
+
+	void init ( );
 
 private:
 	void populate_nodes ( class RecvTable *recv_table, map_type *map );

@@ -7,7 +7,7 @@
 *
 * Call populate_nodes on every RecvTable under client->GetAllClasses()
 */
-netvar_tree::netvar_tree ( )
+void netvar_tree::init ( )
 {
 	const auto *client_class = gInts.Client->GetAllClasses ( );
 	while ( client_class != nullptr )

@@ -3,28 +3,6 @@
 #include <stdio.h>
 #include <Windows.h>
 
-class RecvTable;
-
-int getOffset_deep ( char *szClassName, char *szVariable );
-int getOffset_deep_sub ( RecvTable* pTable, char *szClassName, char *szVariable );
-void DumpTable ( RecvTable *pTable, FILE* fp );
-int getOffset ( char *szClassName, char *szVariable );
-void DumpOffset ( char* file );
-void DumpOffset ( FILE *fp );
-
-class CNetworkedVar
-{
-	FILE *pNetvarLog;
-
-public:
-
-	CNetworkedVar ( );
-	~CNetworkedVar ( );
-
-	FILE *getFilePtr ( );
-	void dump ( );
-};
-
 class CPlayerVars
 {
 public:
@@ -80,8 +58,6 @@ public:
 	bool f1BHop;
 };
 
-
-extern CNetworkedVar gNetworkedVar;
 extern CPlayerVars gPlayerVars;
 extern COffsets gOffsets;
 extern CVars gVars;

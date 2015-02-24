@@ -35,11 +35,6 @@ void __fastcall Hooked_PaintTraverse ( PVOID pPanels, int edx, unsigned int vgui
 				return; //We don't want to draw at the menu.
 			}
 
-			if ( GetAsyncKeyState ( VK_F11 ) )
-			{
-				gNetworkedVar.dump ( );
-			}
-
 			//Test ESP code.
 
 			for ( int i = 0; i < gInts.EntList->GetHighestEntityIndex ( ); i++ )
@@ -80,14 +75,14 @@ void Intro ( void )
 
 		gBaseAPI.LogToFile ( "Injection Successful" ); //If the module got here without crashing, it is good day.
 
-													   // create debug console
+		// create debug console
 		gBaseAPI.BuildDebugConsole ( );
 
 		Color c;
 
 		c.SetColor ( 255, 0, 0, 255 );
 
-		gInts.Cvar->ConsoleColorPrintf ( c, "=================================================\n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, "________________________________________\n" );
 		gInts.Cvar->ConsoleColorPrintf ( c, "  _____ _ ____   ___  _ ____  \n" );
 		gInts.Cvar->ConsoleColorPrintf ( c, " |  ___/ |___ \\ / _ \\/ | ___| \n" );
 		gInts.Cvar->ConsoleColorPrintf ( c, " | |_  | | __) | | | | |___ \\ \n" );
@@ -95,12 +90,13 @@ void Intro ( void )
 		gInts.Cvar->ConsoleColorPrintf ( c, " |_|   |_|_____|\\___/|_|____/ \n" );
 		gInts.Cvar->ConsoleColorPrintf ( c, "Fissi0N f12015 hack loaded successfully.\n" );
 		gInts.Cvar->ConsoleColorPrintf ( c, "Have Fun!\n" );
-		gInts.Cvar->ConsoleColorPrintf ( c, "=================================================\n" );
+		gInts.Cvar->ConsoleColorPrintf ( c, "________________________________________\n" );
 
-		// populate offsets
-		gNetworkedVar.dump ( );
+		gBaseAPI.ColorLogToConsole ( FOREGROUND_INTENSITY | FOREGROUND_GREEN, "Finding Offsets" );
+
+		gNetvars.init ( );
+
 		gPlayerVars.findOffset ( );
-
 	}
 	catch ( ... )
 	{

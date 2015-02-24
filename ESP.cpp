@@ -56,7 +56,7 @@ void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 	}
 	catch ( ... )
 	{
-		gBaseAPI.LogToConsole ( "Error drawing on entity: %i", player.index ( ) );
+		gBaseAPI.ColorLogToConsole ( FOREGROUND_INTENSITY | FOREGROUND_RED, "Error drawing on entity: %i", player.index ( ) );
 		return;
 	}
 }

@@ -19,6 +19,7 @@ public:
 	void ErrorBox ( char* error );
 	void BuildDebugConsole ( void );
 	void LogToConsole ( const char * pszMessage, ... );
+	void ColorLogToConsole ( const WORD color, const char * pszMessage, ... );
 };
 
 extern CBaseAPI gBaseAPI;
