@@ -66,12 +66,15 @@ void __fastcall Hooked_CreateMove(PVOID pClient, int edx, int sequence_number, f
 
 		if ( pBaseWeapon == NULL )
 			return;
-		
-		int id = gPlayerHelper.getWeaponID ( pBaseWeapon );
 
-		if ( id == CTFKnife && *MakePtr ( bool *, pLocalBaseEntity, gPlayerVars.m_bReadyToBackstab ) )
+		bool readyToBackstab = *MakePtr ( bool *, pLocalBaseEntity, gPlayerVars.m_bReadyToBackstab );
+
+		if ( readyToBackstab )
 		{
-			pCommand->buttons |= IN_ATTACK;
+			if ( strcmpi ( "Knife", pBaseWeapon->GetName ( ) ) )
+			{
+				pCommand->buttons |= IN_ATTACK;
+			}
 		}
 
 		if ( pCommand->buttons & IN_JUMP )

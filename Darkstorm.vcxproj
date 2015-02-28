@@ -94,23 +94,23 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="DLLMain.cpp" />
     <ClCompile Include="ESP.cpp" />
-    <ClCompile Include="Glow.cpp" />
     <ClCompile Include="Netvar.cpp" />
     <ClCompile Include="Panels.cpp" />
     <ClCompile Include="CBaseAPI.cpp" />
     <ClCompile Include="Players.cpp" />
+    <ClCompile Include="Radar.cpp" />
     <ClCompile Include="VMTHooks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDrawManager.h" />
     <ClInclude Include="CGlobalVars.h" />
-    <ClInclude Include="Glow.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ESP.h" />
     <ClInclude Include="getvfunc.h" />
     <ClInclude Include="Netvar.h" />
     <ClInclude Include="Panels.h" />
     <ClInclude Include="Players.h" />
+    <ClInclude Include="Radar.h" />
     <ClInclude Include="SDK.h" />
     <ClInclude Include="CBaseAPI.h" />
     <ClInclude Include="VMTHooks.h" />

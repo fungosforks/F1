@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <Windows.h>
 
+void DUMP ( );
+
 class CPlayerVars
 {
 public:

@@ -126,6 +126,7 @@ void CBaseAPI::ColorLogToConsole (const WORD color, const char* pszMessage, ... 
 	strcat ( szLogbuf, "\n" );
 	::SetConsoleTextAttribute ( hDebugConsole, color );
 	::WriteConsole ( hDebugConsole, szLogbuf, strlen ( szLogbuf ), &dwMessage, NULL );
+	::SetConsoleTextAttribute ( hDebugConsole, ~color );
 }
 
 

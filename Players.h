@@ -3,6 +3,19 @@
 #include "SDK.h"
 
 
+// me first
+class CPlayerHelper
+{
+
+public:
+	const char* szGetTF2Class ( int iClass );
+	const unsigned int getWeaponID ( CBaseCombatWeapon *pBaseWeapon );
+};
+
+
+extern CPlayerHelper gPlayerHelper;
+
+
 // genius player mechanism
 // instead of storing pointers, they store the index that the pointer relates to
 class CPlayer
@@ -44,9 +57,9 @@ public:
 	{
 		return *MakePtr ( byte *, getEnt ( ), gPlayerVars.m_fFlags );
 	}
-	inline int GetClass ( ) const
+	inline const char *GetClass ( ) const
 	{
-		return *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iClass );
+		return gPlayerHelper.szGetTF2Class ( *MakePtr ( int *, getEnt ( ), gPlayerVars.m_iClass ) );
 	}
 	inline bool GlowEnabled ( ) const
 	{
@@ -84,17 +97,6 @@ public:
 	{
 		return gInts.EntList->GetClientEntity ( m_index ) == NULL;
 	}
-
-	//inline void enableGlow ( )
-	//{
-	//	gGlow.EnableGlowOnEntity ( getEnt ( )->index );
-	//}
-
-	//inline void disableGlow ( )
-	//{
-	//	gGlow.DisableGlowOnEntity ( getEnt ( )->index );
-	//}
-
 };
 
 class CPlayerList
@@ -132,31 +134,4 @@ public:
 };
 
 
-class CPlayerHelper
-{
-
-public:
-	const char* szGetTF2Class ( int iClass )
-	{
-		switch ( iClass )
-		{
-		case TFClass_Scout: return "Scout";
-		case TFClass_Soldier: return "Soldier";
-		case TFClass_Pyro: return  "Pyro";
-		case TFClass_DemoMan: return "Demoman";
-		case TFClass_Heavy: return "Heavy";
-		case TFClass_Engineer: return "Engineer";
-		case TFClass_Medic: return "Medic";
-		case TFClass_Sniper: return "Sniper";
-		case TFClass_Spy: return "Spy";
-		}
-		return NULL;
-	}
-	const unsigned int getWeaponID ( CBaseCombatWeapon *pBaseWeapon)
-	{
-		return pBaseWeapon->GetClientClass ( )->m_ClassID;
-	}
-};
-
-extern CPlayerHelper gPlayerHelper;
 extern CPlayerList gPlayers;

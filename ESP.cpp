@@ -18,6 +18,7 @@ void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 		bool getPlayerInfo = gInts.Engine->GetPlayerInfo ( player.index ( ), &pInfo );
 		bool playerState = player.GetLifeState ( ) == LIFE_ALIVE;
 
+		gBaseAPI.ColorLogToConsole ( FOREGROUND_INTENSITY | FOREGROUND_BLUE, "Player: %i has life state: %i", player.index ( ), player.GetLifeState ( ) );
 
 
 		// is it a player??
@@ -33,8 +34,11 @@ void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 			if ( gDrawManager.WorldToScreen ( vWorldPos, vScreen ) == false )
 				return;
 
+			// draw radar first so no esp stuff messes with it
+			gRadar.DrawRadarPoint ( player.getEnt ( )->GetAbsOrigin ( ), localPlayer.getEnt ( )->GetAbsOrigin ( ), localPlayer.getEnt ( )->GetAbsAngles ( ), player.getEnt ( ), dwGetTeamColor );
+
 			float Distance = flGetDistance ( player.getEnt ( )->GetAbsOrigin ( ), localPlayer.getEnt ( )->GetAbsOrigin ( ) );
-			int iRadius = 300.0 / Distance;
+			int iRadius = 360 / Distance;
 
 			int health = player.GetHealth ( );
 
@@ -42,7 +46,7 @@ void CEsp::DrawPlayerESP ( CPlayer &player, CPlayer &localPlayer )
 			gDrawManager.DrawPlayerBox ( player.getEnt ( ), dwGetTeamColor );
 
 			// draw name & class under it
-			gDrawManager.DrawString ( vScreen.x, vScreen.y, dwGetTeamColor, "%s | %s", pInfo.name, gPlayerHelper.szGetTF2Class ( player.GetClass ( ) ) );
+			gDrawManager.DrawString ( vScreen.x, vScreen.y, dwGetTeamColor, "%s | %s", pInfo.name, player.GetClass ( ) );
 			vScreen.y += gDrawManager.GetESPHeight ( );
 
 			// draw health

@@ -37,6 +37,8 @@ void __fastcall Hooked_PaintTraverse ( PVOID pPanels, int edx, unsigned int vgui
 
 			//Test ESP code.
 
+			gRadar.DrawRadarBack ( );
+
 			for ( int i = 0; i < gInts.EntList->GetHighestEntityIndex ( ); i++ )
 			{
 				CPlayer localPlayer = gPlayers[ me ];

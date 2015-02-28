@@ -191,14 +191,13 @@ public:
 	IBaseClientDLL* Client;
 	ICvar* Cvar;
 	IEngineTrace *EngineTrace;
-	CGlowObjectManager GlowManager; // wtf am i doing?? nb. dont do this.
 };
 extern CInterfaces gInts;
 
 #include "CBaseAPI.h"
 #include "CGlobalVars.h"
-#include "Glow.h"
 #include "Netvar.h"
+#include "Radar.h"
 //===================================================================================
 
 enum TF2_ClassID_e

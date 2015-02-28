@@ -73,6 +73,9 @@ public:
 		const auto &node = nodes[ name ];
 		return get_offset_recursive ( node->nodes, node->offset, args... );
 	}
+
+	void dump ( );
+
 };
 
 extern netvar_tree gNetvars;

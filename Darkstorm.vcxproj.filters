@@ -28,10 +28,10 @@
     <ClCompile Include="CGlobalVars.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Glow.cpp">
+    <ClCompile Include="Netvar.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Netvar.cpp">
+    <ClCompile Include="Radar.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,10 +69,10 @@
     <ClInclude Include="ESP.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Glow.h">
+    <ClInclude Include="Netvar.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Netvar.h">
+    <ClInclude Include="Radar.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
